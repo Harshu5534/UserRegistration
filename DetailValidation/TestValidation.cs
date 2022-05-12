@@ -37,8 +37,8 @@ namespace DetailValidation
         public void GivenInputIsString_WhenTestPassword_ShouldReturnPassword()
         {
             Validation validation = new Validation();
-            string actual = validation.ValidatePassword("Harshalap");
-            Assert.AreEqual(actual, "Harshalap");
+            string actual = validation.ValidatePassword("Harshupa2");
+            Assert.AreEqual(actual, "Harshupa2");
         }
     }
 }
