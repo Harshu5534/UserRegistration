@@ -17,6 +17,18 @@ namespace UserRegistrationRegex
             }
             return firstname;
         }
+        public string ValidateLastName(string lastname)
+        {
+            if (Regex.IsMatch(lastname, FIRSTNAME_REGEX))
+            {
+                Console.WriteLine("Last Name Matches");
+            }
+            else
+            {
+                Console.WriteLine("Verify Last Name Again");
+            }
+            return lastname;
+        }
 
     }
 }
