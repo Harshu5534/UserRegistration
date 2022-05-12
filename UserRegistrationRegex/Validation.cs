@@ -47,11 +47,11 @@ namespace UserRegistrationRegex
         {
             if (Regex.IsMatch(mobilenumber, MOBILENUMBER_REGEX))
             {
-                Console.WriteLine("Mobile Number Matches");
+                Console.WriteLine("Mobile Number Matches.");
             }
             else
             {
-                Console.WriteLine("Verify Mobile Number Again");
+                Console.WriteLine("Verify Mobile Number Again.");
             }
             return mobilenumber;
         }
