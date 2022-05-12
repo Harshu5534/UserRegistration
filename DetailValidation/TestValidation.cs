@@ -33,5 +33,12 @@ namespace DetailValidation
             string actual = validation.ValidateMobileNumber("+91 9158719379");
             Assert.AreEqual(actual, "+91 9158719379");
         }
+        [Test]
+        public void GivenInputIsString_WhenTestPassword_ShouldReturnPassword()
+        {
+            Validation validation = new Validation();
+            string actual = validation.ValidatePassword("Harshalp");
+            Assert.AreEqual(actual, "Harshalp");
+        }
     }
 }
