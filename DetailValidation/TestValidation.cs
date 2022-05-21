@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Net.Mail;
 using UserRegistrationRegex;
 
 namespace DetailValidation
@@ -57,6 +58,18 @@ namespace DetailValidation
             Validation validation = new Validation();
             string actual = validation.ValidatePassword("Harshupa2@");
             Assert.AreEqual(actual, "Harshupa2@");
+        }
+        [Test]
+        [TestCase("Hello@welcome.com")]
+        [TestCase("Hello+plus@welcome.com")]
+        [TestCase("HarshuPatil@gmail.com.in")]
+        [TestCase("Hello+123@welcome.com")]
+        public void GivenInputIsString_WhenTestEmail_ShouldReturnEmailParamerizedTest(string mailAddress)
+        {
+            Validation validation = new Validation();
+            string actual = validation.ValidateEmailParametrized(mailAddress);
+            Assert.AreEqual(actual, mailAddress);
+
         }
     }
 }

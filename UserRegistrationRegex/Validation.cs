@@ -68,5 +68,17 @@ namespace UserRegistrationRegex
             }
             return password;
         }
+        public string ValidateEmailParametrized(string email)
+        {
+            if (Regex.IsMatch(email, EMAIL_REGEX))
+            {
+                Console.WriteLine("Email Matches");
+            }
+            else
+            {
+                Console.WriteLine("Verify Email Again");
+            }
+            return email;
+        }
     }
 }
