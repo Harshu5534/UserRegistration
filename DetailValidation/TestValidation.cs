@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 using UserRegistrationRegex;
 
@@ -9,55 +10,76 @@ namespace DetailValidation
         [Test]
         public void GivenInputIsString_WhenTestFirstName_ShouldReturnFirstName()
         {
-            Validation validation = new Validation();
-            string actual = validation.ValidateFirstName("Harshal");
-            Assert.AreEqual(actual, "Harshal");
+            try
+            {
+                Validation validation = new Validation("INVALID_FIRSTNAME");
+                bool firstName = validation.ValidateFirstName("Harshal");
+            }
+            catch (ExceptionUserRegistration ex)
+            {
+                Assert.AreEqual(ex.Message, "First Name Is Invalid");
+            }
         }
         [Test]
         public void GivenInputIsString_WhenTestLastName_ShouldReturnLastName()
         {
-            Validation validation = new Validation();
-            string actual = validation.ValidateLastName("Patil");
-            Assert.AreEqual(actual, "Patil");
+            try
+            {
+                Validation validation = new Validation("INVALID_LASTNAME");
+                bool lastName = validation.ValidateFirstName("Patil");
+            }
+            catch (ExceptionUserRegistration ex)
+            {
+                Assert.AreEqual(ex.Message, "Last Name Is Invalid");
+            }
         }
         [Test]
         public void GivenInputIsString_WhenTestEmail_ShouldReturnEmail()
         {
-            Validation validation = new Validation();
-            string Email1 = validation.ValidateEmail("harshal.patil2796@gmail.co.in");
-            Assert.AreEqual(Email1, "harshal.patil2796@gmail.co.in");
-            string Email2 = validation.ValidateEmail("abc@yahoo.com");
-            Assert.AreEqual(Email2, "abc@yahoo.com");
-            string Email3 = validation.ValidateEmail("abc-100@yahoo.com");
-            Assert.AreEqual(Email3, "abc-100@yahoo.com");
-            string Email4 = validation.ValidateEmail("abc.100@yahoo.com");
-            Assert.AreEqual(Email4, "abc.100@yahoo.com");
-            string Email5 = validation.ValidateEmail("abc111@abc.com");
-            Assert.AreEqual(Email5, "abc111@abc.com");
-            string Email6 = validation.ValidateEmail("abc-100@abc.net");
-            Assert.AreEqual(Email6, "abc-100@abc.net");
-            string Email7 = validation.ValidateEmail("abc.100@abc.com.au");
-            Assert.AreEqual(Email7, "abc.100@abc.com.au");
-            string Email8 = validation.ValidateEmail("abc@1.com");
-            Assert.AreEqual(Email8, "abc@1.com");
-            string Email9 = validation.ValidateEmail("abc@gmail.com.com");
-            Assert.AreEqual(Email9, "abc@gmail.com.com");
-            string Email10 = validation.ValidateEmail("abc+100@gmail.com");                                                                                                      
-            Assert.AreEqual(Email10, "abc+100@gmail.com");
+            try
+            {
+                Validation validation = new Validation("INVALID_EMAIL");
+                bool email1 = validation.ValidateEmail("harshal.patil2796@gmail.co.in");
+                bool email2 = validation.ValidateEmail("abc@yahoo.com");
+                bool email3 = validation.ValidateEmail("abc-100@yahoo.com"); 
+                bool email4 = validation.ValidateEmail("abc.100@yahoo.com");
+                bool email5 = validation.ValidateEmail("abc111@abc.com");
+                bool email6 = validation.ValidateEmail("abc-100@abc.net");
+                bool email7 = validation.ValidateEmail("abc.100@abc.com.au");
+                bool email8 = validation.ValidateEmail("abc@1.com");
+                bool email9 = validation.ValidateEmail("abc@gmail.com.com");
+                bool email10= validation.ValidateEmail("abc+100@gmail.com");
+            }
+            catch (ExceptionUserRegistration ex)
+            {
+                Assert.AreEqual(ex.Message, "Email Is Invalid");
+            }
         }
         [Test]
         public void GivenInputIsString_WhenTestMobileNumber_ShouldReturnMobileNumber()
         {
-            Validation validation = new Validation();
-            string actual = validation.ValidateMobileNumber("+91 9158719379");
-            Assert.AreEqual(actual, "+91 9158719379");
+            try
+            {
+                Validation validation = new Validation("INVALID_MOBILENUMBER");
+                bool mobileNumber = validation.ValidateMobileNumber("9158719379");
+            }
+            catch (ExceptionUserRegistration ex)
+            {
+                Assert.AreEqual(ex.Message, "Mobile Number Is Invalid");
+            }
         }
         [Test]
         public void GivenInputIsString_WhenTestPassword_ShouldReturnPassword()
         {
-            Validation validation = new Validation();
-            string actual = validation.ValidatePassword("Harshupa2@");
-            Assert.AreEqual(actual, "Harshupa2@");
+            try
+            {
+                Validation validation = new Validation("INVALID_PASSWORD");
+                bool password = validation.ValidatePassword("Harshupa2@");
+            }
+            catch (ExceptionUserRegistration ex)
+            {
+                Assert.AreEqual(ex.Message, "Password Is Invalid");
+            }
         }
         [Test]
         [TestCase("Hello@welcome.com")]
@@ -66,10 +88,16 @@ namespace DetailValidation
         [TestCase("Hello+123@welcome.com")]
         public void GivenInputIsString_WhenTestEmail_ShouldReturnEmailParamerizedTest(string mailAddress)
         {
-            Validation validation = new Validation();
-            string actual = validation.ValidateEmailParametrized(mailAddress);
-            Assert.AreEqual(actual, mailAddress);
-
+            try
+            {
+                Validation validation = new Validation("INVALID_EMAIL");
+                bool password = validation.ValidatePassword("mailAddress");
+            }
+            catch (ExceptionUserRegistration ex)
+            {
+                Assert.AreEqual(ex.Message, "Email Is Invalid");
+            }
+           
         }
     }
 }

@@ -5,80 +5,105 @@ namespace UserRegistrationRegex
     public class Validation
     {                                                                                                       
         public const string FIRSTNAME_REGEX = "^[A-Z]{1}[a-zA-Z]{2,}$";
+        public const string LASTNAME_REGEX = "^[A-Z]{1}[a-zA-Z]{2,}$";
         public static string EMAIL_REGEX = "^[0-9a-zA-Z]+[.+-_]{0,1}[0-9a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}([.][a-zA-Z]{2,3}){0,1}$";
         public static string MOBILENUMBER_REGEX = "^[+]{1}[1-9]{2}[-. ]{1}[1-9]{2}[0-9]{8}$";
-        public static string PASSWORD_REGEX = "^[#@%+!]{1}+[a-zA-z0-9]{8,}$";
-        public string ValidateFirstName(string firstname)
+        public static string PASSWORD_REGEX = "^[#@%!]{1}+[a-zA-z0-9]{8,}$";
+        private string message;
+
+        public Validation(string message)
         {
-            if (Regex.IsMatch(firstname, FIRSTNAME_REGEX))
-            {
-                Console.WriteLine("First Name Matches");
-            }
-            else
-            {
-                Console.WriteLine("Verify First Name Again");
-            }
-            return firstname;
+            this.message = message;
         }
-        public string ValidateLastName(string lastname)
+        public bool ValidateFirstName(string firstname)
         {
-            if (Regex.IsMatch(lastname, FIRSTNAME_REGEX))
+            try
             {
-                Console.WriteLine("Last Name Matches");
+                if (FIRSTNAME_REGEX != firstname)
+                {
+                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_FIRSTNAME, "First Name Is Invalid");
+                }
+                return Regex.IsMatch(firstname, FIRSTNAME_REGEX);
             }
-            else
+            catch (ExceptionUserRegistration ex)
             {
-                Console.WriteLine("Verify Last Name Again");
+                return ex.Message == "First Name Is Invalid";
             }
-            return lastname;
         }
-        public string ValidateEmail(string email)
+        public bool ValidateLastName(string lastname)
         {
-            if (Regex.IsMatch(email, EMAIL_REGEX))
+            try
             {
-                Console.WriteLine("Email Matches");
+                if (LASTNAME_REGEX != lastname)
+                {
+                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_LASTNAME, "Last Name Is Invalid");
+                }
+                return Regex.IsMatch(lastname, LASTNAME_REGEX);
             }
-            else
+            catch(ExceptionUserRegistration ex)
             {
-                Console.WriteLine("Verify Email Again");
+                return ex.Message == "Last Name Is Invalid";
             }
-            return email;
         }
-        public string ValidateMobileNumber(string mobilenumber)
+        public bool ValidateEmail(string email)
         {
-            if (Regex.IsMatch(mobilenumber, MOBILENUMBER_REGEX))
+            try
             {
-                Console.WriteLine("Mobile Number Matches.");
+                if (EMAIL_REGEX != email)
+                {
+                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_EMAIL, "Email Is Invalid");
+                }
+                return Regex.IsMatch(email, EMAIL_REGEX);
             }
-            else
+            catch (ExceptionUserRegistration ex)
             {
-                Console.WriteLine("Verify Mobile Number Again.");
+                return ex.Message == "Email Is Invalid";
             }
-            return mobilenumber;
         }
-        public string ValidatePassword(string password)
+        public bool ValidateMobileNumber(string mobilenumber)
         {
-            if (Regex.IsMatch(password, PASSWORD_REGEX))
+            try
             {
-                Console.WriteLine("Password Matches");
+                if (MOBILENUMBER_REGEX != mobilenumber)
+                {
+                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_MOBILENUMBER, "Mobile Number Is Invalid");
+                }
+                return Regex.IsMatch(mobilenumber, MOBILENUMBER_REGEX);
             }
-            else
+            catch (ExceptionUserRegistration ex)
             {
-                Console.WriteLine("Verify Password Again");
+                return ex.Message == "Mobile Number Is Invalid";
             }
-            return password;
         }
-        public string ValidateEmailParametrized(string email)
+        public bool ValidatePassword(string password)
         {
-            if (Regex.IsMatch(email, EMAIL_REGEX))
+            try
             {
-                Console.WriteLine("Email Matches");
+                if (PASSWORD_REGEX != password)
+                {
+                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_PASSWORD, "Passowrd Is Invalid");
+                }
+                return Regex.IsMatch(password, PASSWORD_REGEX);
             }
-            else
+            catch (ExceptionUserRegistration ex)
             {
-                Console.WriteLine("Verify Email Again");
+                return ex.Message == "Password Is Invalid";
             }
-            return email;
+        }
+        public bool ValidateEmailParametrized(string email)
+        {
+            try
+            {
+                if (EMAIL_REGEX != email)
+                {
+                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_EMAIL, "Email Is Invalid");
+                }
+                return Regex.IsMatch(email, EMAIL_REGEX);
+            }
+            catch (ExceptionUserRegistration ex)
+            {
+                return ex.Message == "Email Is Invalid";
+            }
         }
     }
 }
