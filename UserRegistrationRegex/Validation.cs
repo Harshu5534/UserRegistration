@@ -15,95 +15,12 @@ namespace UserRegistrationRegex
         {
             this.message = message;
         }
-        public bool ValidateFirstName(string firstname)
-        {
-            try
-            {
-                if (FIRSTNAME_REGEX != firstname)
-                {
-                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_FIRSTNAME, "First Name Is Invalid");
-                }
-                return Regex.IsMatch(firstname, FIRSTNAME_REGEX);
-            }
-            catch (ExceptionUserRegistration ex)
-            {
-                return ex.Message == "First Name Is Invalid";
-            }
-        }
-        public bool ValidateLastName(string lastname)
-        {
-            try
-            {
-                if (LASTNAME_REGEX != lastname)
-                {
-                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_LASTNAME, "Last Name Is Invalid");
-                }
-                return Regex.IsMatch(lastname, LASTNAME_REGEX);
-            }
-            catch(ExceptionUserRegistration ex)
-            {
-                return ex.Message == "Last Name Is Invalid";
-            }
-        }
-        public bool ValidateEmail(string email)
-        {
-            try
-            {
-                if (EMAIL_REGEX != email)
-                {
-                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_EMAIL, "Email Is Invalid");
-                }
-                return Regex.IsMatch(email, EMAIL_REGEX);
-            }
-            catch (ExceptionUserRegistration ex)
-            {
-                return ex.Message == "Email Is Invalid";
-            }
-        }
-        public bool ValidateMobileNumber(string mobilenumber)
-        {
-            try
-            {
-                if (MOBILENUMBER_REGEX != mobilenumber)
-                {
-                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_MOBILENUMBER, "Mobile Number Is Invalid");
-                }
-                return Regex.IsMatch(mobilenumber, MOBILENUMBER_REGEX);
-            }
-            catch (ExceptionUserRegistration ex)
-            {
-                return ex.Message == "Mobile Number Is Invalid";
-            }
-        }
-        public bool ValidatePassword(string password)
-        {
-            try
-            {
-                if (PASSWORD_REGEX != password)
-                {
-                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_PASSWORD, "Passowrd Is Invalid");
-                }
-                return Regex.IsMatch(password, PASSWORD_REGEX);
-            }
-            catch (ExceptionUserRegistration ex)
-            {
-                return ex.Message == "Password Is Invalid";
-            }
-        }
-        public bool ValidateEmailParametrized(string email)
-        {
-            try
-            {
-                if (EMAIL_REGEX != email)
-                {
-                    throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_EMAIL, "Email Is Invalid");
-                }
-                return Regex.IsMatch(email, EMAIL_REGEX);
-            }
-            catch (ExceptionUserRegistration ex)
-            {
-                return ex.Message == "Email Is Invalid";
-            }
-        }
+        public bool ValidateFirstName(string firstname) => Regex.IsMatch(firstname, FIRSTNAME_REGEX) ? true : throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_FIRSTNAME, "First Name Is Invalid");
+        public bool ValidateLastName(string lastname) => Regex.IsMatch(lastname, LASTNAME_REGEX) ? true : throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_LASTNAME, "Last Name Is Invalid");
+        public bool ValidateEmail(string email) => Regex.IsMatch(email, EMAIL_REGEX) ? true : throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_EMAIL, "Email Is Invalid");
+        public bool ValidateMobileNumber(string mobileNumber) => Regex.IsMatch(mobileNumber, MOBILENUMBER_REGEX) ? true : throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_MOBILENUMBER, "Mobile Number Is Invalid");
+        public bool ValidatePassword(string password) => Regex.IsMatch(password, PASSWORD_REGEX) ? true : throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_PASSWORD, "Password Is Invalid");
+        public bool ValidateEmailParametrized(string email) => Regex.IsMatch(email, EMAIL_REGEX) ? true : throw new ExceptionUserRegistration(ExceptionUserRegistration.ExceptionType.INVALID_EMAIL, "Email Is Invalid");
+
     }
 }
